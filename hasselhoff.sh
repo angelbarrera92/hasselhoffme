@@ -5,7 +5,7 @@
 ################################
 
 
-## Preparing full bing url of image ##
+## Preparing full url of image ##
 URL='https://media.cntraveller.in/wp-content/uploads/2016/08/davidhasselhofflead.jpg'
 
 ## Local directory where this script file placed
@@ -20,7 +20,7 @@ mkdir -m a=rwx -p $IMGDIR
 ## Local path of output image ##
 LOCALIMG=$IMGDIR"/hasselhofflead.jpg"
 
-## Download image from bing to local path ##
+## Download image to local path ##
 curl $URL --output $LOCALIMG
 
 ## Setting desktop background image from local ##

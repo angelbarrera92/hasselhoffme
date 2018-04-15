@@ -1,7 +1,7 @@
 # Build customization
 builds:
-  - main: hasselhoffme.go
-  - env:
+  main: hasselhoffme.go
+  env:
     - CGO_ENABLED=0
 binary: hasselhoffme
 goos:

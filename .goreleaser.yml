@@ -1,0 +1,16 @@
+# Build customization
+builds:
+  - main: hasselhoffme.go
+  - env:
+    - CGO_ENABLED=0
+binary: hasselhoffme
+goos:
+  - windows
+  - darwin
+  - linux
+goarch:
+  - amd64
+  - arm64
+# Archive customization
+archive:
+  format: tar.gz

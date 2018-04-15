@@ -6,7 +6,7 @@
 
 
 ## Preparing full url of image ##
-URL='https://media.cntraveller.in/wp-content/uploads/2016/08/davidhasselhofflead.jpg'
+URL='https://raw.githubusercontent.com/angelbarrera92/hasselhoffme/master/wallpaper.jpg'
 
 ## Local directory where this script file placed
 CURDIR="/tmp"

@@ -2,7 +2,7 @@ language: go
 os:
 - linux
 go:
-- 1.10
+- 1.9
 before_install:
 - go get -u github.com/golang/dep/cmd/dep
 - dep ensure
@@ -13,4 +13,4 @@ deploy:
     secure: $GITHUB_RELEASES_API_KEY
   file: hasselhoffme
   on:
-    repo: ervitis/hasselhoffme
+    repo: $TRAVIS_REPO_SLUG

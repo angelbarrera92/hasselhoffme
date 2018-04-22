@@ -11,13 +11,6 @@ script:
 - go build -i .
 
 deploy:
-- provider: script
-  skip_cleanup: true
-  script: curl -sL http://git.io/goreleaser | bash
-  on:
-    tags: true
-    condition: $TRAVIS_OS_NAME = linux
-
 - provider: releases
   api_key:
     secure: NjCu5cRlKxHvSKZ1giKNgfFA0QsrFynFOKh32c/ljxUjPK0/otHmGQ959qUOsHwwy91a+edGaQHubowoltAN+8xEhTfxxZsXrZIgE/VQKnIt4PJiqJsGTTyCjwZVJAB8d8Nnwj1QZtuY/Z5hJ2FwXoQzp9UfaMFmzde5uWiul2mmPEfqGHZf9bNApR5kTkXJR9m8g0lIIIiksXZzMUiG14OClNxFWWtvM2w0BWyuRGQw8luyF2vMF+wsuYVjecMujD4KfHncUI1ba/LOscaqRzuqApHZfbhlQSHg77WR4Ur1jtWFLtgNnZahn7aub2yxtXBtbBAmNWLQo+a1emiTdjsF97NpX1gbH+gitv6JsuAwsBTe8pr3308/XlmhdSjQk2Aaped6CvFdP4xtTiaCEKn3JJIcLpuiSpOTJKa8KE3/ixe5LP3j3yegbFPZnD977+xGZA24QZbgt/WxfhVITDYl/Z9nzByVf/Q3z4gWwkaFKZElQXB9khHjfhPPekCOPyl/m5417OlzZkQpM8diqXiqnumS2uiWSLXRGDy9EGtAliY2AhP5pVOaYbFAeKT2LhsTuDj0+A6tBhMTgdrJ7V4NyBNQSGGhc0c3ndVx+zMna4jwteuishLpZZuWa/NY9CO6WmiH5WNwZEOaGzeRG1MKQyzUUk95cekzv8lhTc0=

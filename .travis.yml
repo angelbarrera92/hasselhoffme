@@ -1,19 +1,16 @@
 language: go
-
-os: 
-  - linux
-
+os:
+- linux
 go:
-  - 1.10
-
+- 1.10
 before_install:
-  - go get -u github.com/golang/dep/cmd/dep
-  - dep ensure
+- go get -u github.com/golang/dep/cmd/dep
+- dep ensure
 
 deploy:
-- provider: script
-  skip_cleanup: true
-  script: curl -sL http://git.io/goreleaser | bash
+  provider: releases
+  api_key:
+    secure: $GITHUB_RELEASES_API_KEY
+  file: hasselhoffme
   on:
-    tags: true
-    condition: $TRAVIS_OS_NAME = linux
+    repo: ervitis/hasselhoffme

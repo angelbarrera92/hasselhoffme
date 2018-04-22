@@ -13,4 +13,4 @@ deploy:
     secure: $GITHUB_RELEASES_API_KEY
   file: hasselhoffme
   on:
-    repo: $TRAVIS_REPO_SLUG
+    repo: ervitis/hasselhoffme

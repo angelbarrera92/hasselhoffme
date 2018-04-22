@@ -4,10 +4,11 @@ os:
   - linux
 
 go:
-  - 1.x
+  - 1.10
 
 before_install:
-  - go get github.com/reujab/wallpaper
+  - go get -u github.com/golang/dep/cmd/dep
+  - dep ensure
 
 deploy:
 - provider: script

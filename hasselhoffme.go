@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	url := "https://raw.githubusercontent.com/angelbarrera92/hasselhoffme/master/wallpaper.jpg"
+	url := SearchHasselhoffRandom("david hasselhoff")
 	setWallpaperFromURL(url)
 }
 

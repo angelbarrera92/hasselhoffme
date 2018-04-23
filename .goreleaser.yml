@@ -1,6 +1,6 @@
 # Build customization
 builds:
-  - main: hasselhoffme.go bing_images.go
+  - main: .
     env:
       - CGO_ENABLED=0
     binary: hasselhoffme

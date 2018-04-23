@@ -6,6 +6,7 @@ import (
 
 func main() {
 	url := SearchHasselhoffRandom("david hasselhoff")
+
 	setWallpaperFromURL(url)
 }
 

@@ -34,5 +34,5 @@
   unused-packages = true
 
 [[constraint]]
-  name = "github.com/moovweb/gokogiri"
   branch = "master"
+  name = "golang.org/x/net"

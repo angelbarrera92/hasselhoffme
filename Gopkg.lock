@@ -3,22 +3,18 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/moovweb/gokogiri"
-  packages = [
-    ".",
-    "help",
-    "html",
-    "util",
-    "xml",
-    "xpath"
-  ]
-  revision = "eafc181356de1da75468a7bdf54b430393f9c0e3"
-
-[[projects]]
-  branch = "master"
   name = "github.com/reujab/wallpaper"
   packages = ["."]
   revision = "c6a870f754f9be4aa7930ee73d138dfcda684ff9"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/net"
+  packages = [
+    "html",
+    "html/atom"
+  ]
+  revision = "5f9ae10d9af5b1c89ae6904293b14b064d4ada23"
 
 [[projects]]
   name = "gopkg.in/ini.v1"
@@ -35,6 +31,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "166d2d7963d0560bd035257f06b5ce7d0a49d141b06ae47b90b1eb6ab760b446"
+  inputs-digest = "d175cfd579fde8b95d0042318c268335943cd056fb9a5bc2ea58951348e3d848"
   solver-name = "gps-cdcl"
   solver-version = 1

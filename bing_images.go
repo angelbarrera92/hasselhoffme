@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"fmt"
 	"io/ioutil"
-	"github.com/moovweb/gokogiri"
 	"math/rand"
 	"time"
+	"strings"
+	"golang.org/x/net/html"
 )
 
 type ImageResult struct {
@@ -18,11 +19,7 @@ type ImageResult struct {
 const BaseUrl = "http://www.bing.com/images/search?q="
 
 func SearchHasselhoffRandom(searchWord string) (result string) {
-	page, err := fetchPage(searchWord); if err != nil {
-		return err.Error()
-	}
-
-	images, err := parseResult(page); if err != nil {
+	images, err := parseResult(searchWord); if err != nil {
 		return err.Error()
 	}
 
@@ -31,7 +28,7 @@ func SearchHasselhoffRandom(searchWord string) (result string) {
 	return images[rn].Source
 }
 
-func fetchPage(searchWord string) (results []byte, err error) {
+func parseResult(searchWord string) (results []ImageResult, err error) {
 	url := BaseUrl + url2.QueryEscape(searchWord)
 
 	resp, err := http.Get(url); if err != nil {
@@ -46,28 +43,37 @@ func fetchPage(searchWord string) (results []byte, err error) {
 
 	defer resp.Body.Close()
 
-	return page, nil
-}
-
-func parseResult(html []byte) (results []ImageResult, err error) {
-	body, err := gokogiri.ParseHtml([]byte(html)); if err != nil {
-		return nil, err
-	}
-
-	root := body.Root()
-	previews, err := root.Search("//a/div/img"); if err != nil {
-		return nil, err
-	}
+	bodyHtml := strings.Replace(string(page), "<noscript>", "", -1)
+	bodyHtml = strings.Replace(bodyHtml, "</noscript>", "", -1)
 
 	var images []ImageResult
-	c := 0
-	for _, v := range previews {
-		src := v.Attr("src")
-		images = append(images, ImageResult{
-			Source: src,
-			Index: c,
-		})
-		c ++
+
+	if document, err := html.Parse(strings.NewReader(bodyHtml)); err == nil {
+
+		var parser func(node *html.Node)
+
+		parser = func(node *html.Node) {
+			if node.Type == html.ElementNode && node.Data == "img" {
+				c := 0
+
+				for _, e := range node.Attr {
+					if e.Key == "src" && strings.Contains(e.Val, "http") {
+						images = append(images, ImageResult{
+							Source: e.Val,
+							Index:  c,
+						})
+						c ++
+					}
+				}
+			}
+
+			for el := node.FirstChild; el != nil; el = el.NextSibling {
+				parser(el)
+			}
+
+		}
+
+		parser(document)
 	}
 
 	return images, nil

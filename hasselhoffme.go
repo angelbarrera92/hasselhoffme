@@ -2,12 +2,17 @@ package main
 
 import (
 	"github.com/reujab/wallpaper"
+	"github.com/ervitis/hasselhoffme/images"
 )
 
 func main() {
-	url := SearchHasselhoffRandom("david hasselhoff")
+	url := SearchRandomImage(images.SearchGithubRawImages, "")
+	println(url)
+	// setWallpaperFromURL(url)
+}
 
-	setWallpaperFromURL(url)
+func SearchRandomImage(sifn images.SearchImageFn, wordsToSearch string) string {
+	return sifn(wordsToSearch)
 }
 
 func setWallpaperFromURL(url string) {

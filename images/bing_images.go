@@ -1,29 +1,22 @@
-package main
+package images
 
 import (
-	url2 "net/url"
 	"net/http"
 	"fmt"
 	"io/ioutil"
-	"math/rand"
-	"time"
 	"strings"
 	"golang.org/x/net/html"
+	url2 "net/url"
 )
-
-type ImageResult struct {
-	Source string
-	Index int
-}
 
 const BaseUrl = "http://www.bing.com/images/search?q="
 
-func SearchHasselhoffRandom(searchWord string) (result string) {
+func SearchBingImage(searchWord string) (result string) {
 	images, err := parseResult(searchWord); if err != nil {
 		return err.Error()
 	}
 
-	rn := randomNumber(images)
+	rn := RandomNumber(images)
 
 	return images[rn].Source
 }
@@ -77,10 +70,4 @@ func parseResult(searchWord string) (results []ImageResult, err error) {
 	}
 
 	return images, nil
-}
-
-func randomNumber(images []ImageResult) int {
-	rand.Seed(time.Now().Unix())
-
-	return rand.Intn(len(images))
 }

@@ -7,8 +7,8 @@ import (
 
 func main() {
 	url := SearchRandomImage(images.SearchGithubRawImages, "")
-	println(url)
-	// setWallpaperFromURL(url)
+
+	setWallpaperFromURL(url)
 }
 
 func SearchRandomImage(sifn images.SearchImageFn, wordsToSearch string) string {

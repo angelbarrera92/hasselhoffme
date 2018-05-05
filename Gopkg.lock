@@ -14,7 +14,7 @@
     "html",
     "html/atom"
   ]
-  revision = "5f9ae10d9af5b1c89ae6904293b14b064d4ada23"
+  revision = "640f4622ab692b87c2f3a94265e6f579fe38263d"
 
 [[projects]]
   name = "gopkg.in/ini.v1"
@@ -31,6 +31,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "d175cfd579fde8b95d0042318c268335943cd056fb9a5bc2ea58951348e3d848"
+  inputs-digest = "2b642c8db23d093c895f9018d364576f581dd3d1ed6937034c7f134929f7d745"
   solver-name = "gps-cdcl"
   solver-version = 1

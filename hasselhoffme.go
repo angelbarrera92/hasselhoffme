@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/reujab/wallpaper"
-	"./images"
+	"github.com/ervitis/hasselhoffme/images"
 )
 
 func main() {

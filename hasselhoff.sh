@@ -1,27 +1,30 @@
 #!/bin/bash
 
 ################################
-## Platform: Gnome            ##
+## Platform: Linux & Mac      ##
 ################################
 
+platform="$(uname -s)"
+case "${platform}" in
+    Linux*)     machine=linux;;
+    Darwin*)    machine=darwin;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${platform}"
+esac
+echo ${machine}
 
-## Preparing full url of image ##
-URL='https://raw.githubusercontent.com/angelbarrera92/hasselhoffme/master/wallpaper.jpg'
+VERSION="0.0.2"
+AMD64_URL="https://github.com/angelbarrera92/hasselhoffme/releases/download/${VERSION}/hasselhoffme_${VERSION}_${machine}_amd64.tar.gz"
 
-## Local directory where this script file placed
-CURDIR="/tmp"
-
-## Local directory for images
-IMGDIR=$CURDIR"/david"
+## Local directory for binary
+BINDIR="/tmp/david"
 
 ## Creating directory if not present ##
-mkdir -m a=rwx -p $IMGDIR
+mkdir -m a=rwx -p $BINDIR
 
-## Local path of output image ##
-LOCALIMG=$IMGDIR"/hasselhofflead.jpg"
+## Download the binary to local path ##
+cd $BINDIR && curl -s -L $AMD64_URL | tar xz
 
-## Download image to local path ##
-curl $URL --output $LOCALIMG
-
-## Setting desktop background image from local ##
-gsettings set org.gnome.desktop.background picture-uri 'file://'$LOCALIMG
+## Setting desktop background image from using the binary ##
+$BINDIR/hasselhoffme

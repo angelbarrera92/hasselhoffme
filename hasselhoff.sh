@@ -14,7 +14,7 @@ case "${platform}" in
 esac
 echo ${machine}
 
-VERSION="0.0.2"
+VERSION="0.0.4"
 AMD64_URL="https://github.com/angelbarrera92/hasselhoffme/releases/download/${VERSION}/hasselhoffme_${VERSION}_${machine}_amd64.tar.gz"
 BINDIR="/tmp/david"
 mkdir -m a=rwx -p $BINDIR

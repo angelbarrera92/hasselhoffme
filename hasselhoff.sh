@@ -12,11 +12,10 @@ case "${platform}" in
     MINGW*)     machine=MinGw;;
     *)          machine="UNKNOWN:${platform}"
 esac
-echo ${machine}
-
-VERSION="0.0.4"
-AMD64_URL="https://github.com/angelbarrera92/hasselhoffme/releases/download/${VERSION}/hasselhoffme_${VERSION}_${machine}_amd64.tar.gz"
+VERSION="0.0.7"
+AMD64_URL="https://github.com/angelbarrera92/hasselhoffme/releases/download/${VERSION}/hasselhoffme_${VERSION}_${machine}_amd64"
 BINDIR="/tmp/david"
 mkdir -m a=rwx -p $BINDIR
-cd $BINDIR && curl -s -L $AMD64_URL | tar xz
-$BINDIR/hasselhoffme
+cd $BINDIR && curl -s -L $AMD64_URL -O
+chmod u=rwx $BINDIR/hasselhoffme_${VERSION}_${machine}_amd64
+$BINDIR/hasselhoffme_${VERSION}_${machine}_amd64

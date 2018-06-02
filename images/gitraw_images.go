@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 )
 
-const UserRepo = "ervitis/hasselhoffme"
+const UserRepo = "angelbarrera92/hasselhoffme"
 const RawRepo = "https://raw.githubusercontent.com"
 const FoldersRepo = "master/wallpapers"
 

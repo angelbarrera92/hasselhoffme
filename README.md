@@ -6,5 +6,17 @@ wget http://tiny.cc/hasselhoff -O - | bash
 curl -L http://tiny.cc/hasselhoff | bash
 ```
 
+If you can't run the script, try with this url:
+```bash
+curl -L https://goo.gl/dzTZub | bash
+```
+
+Another one
+```bash
+curl -L http://tiny.cc/hasselhoffme | bash
+```
+
 ## Tested
-Tested on fedora 27
+- Tested on fedora 27
+- MacOS
+- Windows

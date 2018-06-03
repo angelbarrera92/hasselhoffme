@@ -11,6 +11,5 @@ builds:
     goarch:
       - amd64
       - arm64
-# Archive customization
 archive:
-  format: tar.gz
+  format: binary

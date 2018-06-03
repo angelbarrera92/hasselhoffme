@@ -8,8 +8,6 @@ import (
 )
 
 const UserRepo = "angelbarrera92/hasselhoffme"
-const RawRepo = "https://raw.githubusercontent.com"
-const FoldersRepo = "master/wallpapers"
 
 type Links struct {
 	Self string `json:"message"`
@@ -31,38 +29,48 @@ type Content struct {
 }
 
 func SearchGithubRawImages(w string) (result string) {
-	url := fmt.Sprintf("%s/%s/%s/", RawRepo, UserRepo, FoldersRepo)
+	url := fmt.Sprintf("https://api.github.com/repos/%s/contents/wallpapers", UserRepo)
 
-	v := getLastIndex(url)
-	if v == 0 {
+	content, err := getContent(url)
+	if err != nil {
 		panic("Could not load any image")
 	}
 
-	return fmt.Sprintf("%s%d.jpg", url, RandomNumberInt(1, v))
+	var images []ImageResult
+
+	for k, v := range content {
+		images = append(images, ImageResult{
+			Source: v.DownloadUrl,
+			Index: k,
+		})
+	}
+
+	rn := RandomNumber(images)
+
+	return images[rn].Source
 }
 
-func getLastIndex(baseUrl string) int {
-	apiUrl := fmt.Sprintf("https://api.github.com/repos/%s/contents/wallpapers", UserRepo)
+func getContent(baseUrl string) ([]Content, error) {
 
 	var content []Content
 
-	resp, _ := http.Get(apiUrl)
+	resp, _ := http.Get(baseUrl)
 	if resp.StatusCode >= 400 {
-		return 0
+		return nil, fmt.Errorf("error response: %s", resp.Body)
 	}
 
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return 0
+		return nil, err
 	}
 
 	err = json.Unmarshal(body, &content)
 	if err != nil {
 		fmt.Println(err)
-		return 0
+		return nil, err
 	}
 
-	return len(content)
+	return content, nil
 }

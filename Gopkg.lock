@@ -4,8 +4,8 @@
 [[projects]]
   name = "github.com/angelbarrera92/hasselhoffme"
   packages = ["images"]
-  revision = "a0f78ab94cdb03b870c57cf154273bad7eb4fcf2"
-  version = "0.0.7"
+  revision = "b0f89b3a60f40b34fdabb9cdc6fd41a9ec1c3537"
+  version = "0.0.9"
 
 [[projects]]
   branch = "master"

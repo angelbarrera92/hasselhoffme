@@ -2,12 +2,6 @@
 
 
 [[projects]]
-  name = "github.com/angelbarrera92/hasselhoffme"
-  packages = ["images"]
-  revision = "b0f89b3a60f40b34fdabb9cdc6fd41a9ec1c3537"
-  version = "0.0.9"
-
-[[projects]]
   branch = "master"
   name = "github.com/reujab/wallpaper"
   packages = ["."]
@@ -37,6 +31,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "9ff13e8da92124c805a50801e01b5bbf4dc4f5b282aa78bb6c5a39956510b303"
+  inputs-digest = "d175cfd579fde8b95d0042318c268335943cd056fb9a5bc2ea58951348e3d848"
   solver-name = "gps-cdcl"
   solver-version = 1

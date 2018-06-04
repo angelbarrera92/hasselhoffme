@@ -12,7 +12,7 @@ case "${platform}" in
     MINGW*)     machine=MinGw;;
     *)          machine="UNKNOWN:${platform}"
 esac
-VERSION="0.0.8"
+VERSION="0.1.0"
 AMD64_URL="https://github.com/angelbarrera92/hasselhoffme/releases/download/${VERSION}/hasselhoffme_${VERSION}_${machine}_amd64"
 BINDIR="/tmp/david"
 mkdir -m a=rwx -p $BINDIR

@@ -5,6 +5,9 @@
 /_//_/  /_/ |_|/___/  /___/  /___/  /____//_//_/  \____/ /_/    /_/    /_/  /_/  /___/                                                                                   
 ```
 
+:-------------------------:|:-------------------------:
+![Alt text](.readme_images/dell-xps15-front.png?raw=true "Linux HasselHoff")  |  ![Alt text](.readme_images/macbookpro15_front.png?raw=true "MacOS Hasselhoff")
+
 [![Release](https://img.shields.io/github/release/angelbarrera92/hasselhoffme.svg)](https://github.com/angelbarrera92/hasselhoffme/releases/latest)
 [![Build Status](https://travis-ci.org/angelbarrera92/hasselhoffme.svg?branch=master)](https://travis-ci.org/angelbarrera92/hasselhoffme)
 [![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg)](https://github.com/goreleaser)
@@ -22,7 +25,7 @@ wget https://tiny.cc/hasselhoff -O - | bash
 curl -L https://tiny.cc/hasselhoff | bash
 ```
 
-## Tested
+## Tested On
 - Fedora 27
 - MacOS
 

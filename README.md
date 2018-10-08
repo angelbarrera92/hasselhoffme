@@ -4,7 +4,7 @@
  / _  /  / __ | _\ \   _\ \   / _/   / /__ / _  / / /_/ / / _/   / _/   / /|_/ /  / _/  
 /_//_/  /_/ |_|/___/  /___/  /___/  /____//_//_/  \____/ /_/    /_/    /_/  /_/  /___/                                                                                   
 ```
-
+Linux Hasselhoff            |  MacOS Hasselhoff 
 :-------------------------:|:-------------------------:
 ![Alt text](.readme_images/dell-xps15-front.png?raw=true "Linux HasselHoff")  |  ![Alt text](.readme_images/macbookpro15_front.png?raw=true "MacOS Hasselhoff")
 

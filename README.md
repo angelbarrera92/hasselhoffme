@@ -4,9 +4,8 @@
  / _  /  / __ | _\ \   _\ \   / _/   / /__ / _  / / /_/ / / _/   / _/   / /|_/ /  / _/  
 /_//_/  /_/ |_|/___/  /___/  /___/  /____//_//_/  \____/ /_/    /_/    /_/  /_/  /___/                                                                                   
 ```
-Linux Hasselhoff            |  MacOS Hasselhoff 
-:-------------------------:|:-------------------------:
-![Alt text](.readme_images/dell-xps15-front.png?raw=true "Linux HasselHoff")  |  ![Alt text](.readme_images/macbookpro15_front.png?raw=true "MacOS Hasselhoff")
+
+![Alt text](.readme_images/dell-xps15-front.png?raw=true "Linux HasselHoff"){:height="200px"} ![Alt text](.readme_images/macbookpro15_front.png?raw=true "MacOS Hasselhoff"){:height="200px"}
 
 [![Release](https://img.shields.io/github/release/angelbarrera92/hasselhoffme.svg)](https://github.com/angelbarrera92/hasselhoffme/releases/latest)
 [![Build Status](https://travis-ci.org/angelbarrera92/hasselhoffme.svg?branch=master)](https://travis-ci.org/angelbarrera92/hasselhoffme)

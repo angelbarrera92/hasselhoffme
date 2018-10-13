@@ -70,7 +70,7 @@ func setMotdFromURL(url string) {
 		Flipy:  false}
 	motd, err := ascii.Decode(resp.Body, opt)
 
-	f, err := os.OpenFile(MOTD_FILE, os.O_RDWR|os.O_CREATE, 0755)
+	f, err := os.OpenFile(MOTD_FILE, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", MOTD_FILE, err)
 		os.Exit(1)

@@ -1,12 +1,8 @@
-<h1>Contributors List</h1>
-<h2>Author: Morgan Hamlin</h2>
-<h3>Angel Barrera: Mastermind of The Hoff</h3>
-<h3>Github User mintrupt: Hoff Protector</h3>
-<h3>Github User guumaster: Lord of the CMD</h3>
-<h3>Github User Ervitis: The Wallpaper Guy</h3>
-<h3>Benjamin Gentil: The Hoff Specialist</h3>
-<h3>Morgan Hamlin: Hoffcreds Specialist</h3>
+# Contributors
 
-[README](README.md)
-
-
+- [Angel Barrera | @angelbarrera92](https://github.com/angelbarrera92): Mastermind of The Hoff
+- [류형욱 | @mintrupt](https://github.com/mintrupt): Hoff Protector
+- [Gustavo | @guumaster](https://github.com/guumaster): Lord of the CMD
+- [ervitis | @ervitis](https://github.com/ervitis): The Wallpaper Guy
+- [Benjamin Gentil | @bengentil](https://github.com/bengentil): The Hoff Specialist
+- [Morgan Hamlin | @Mkelsey25](https://github.com/Mkelsey25): Hoffcreds Specialist

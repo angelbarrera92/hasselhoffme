@@ -29,3 +29,9 @@ curl -s -L https://tiny.cc/hasselhoff-win | cmd
 - Tested on fedora 27 and 28
 - MacOS
 - Windows 10
+
+## Contributors
+
+If you want to see the list of geniuses who have contributed to this project, click on hasselhoff:
+
+[![Hoff](https://media.giphy.com/media/UuDxS2EBRZSyA/giphy.gif)](./CONTRIBUTORS.md)

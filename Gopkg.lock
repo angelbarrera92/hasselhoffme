@@ -17,7 +17,7 @@
   branch = "master"
   name = "github.com/reujab/wallpaper"
   packages = ["."]
-  revision = "c6a870f754f9be4aa7930ee73d138dfcda684ff9"
+  revision = "cfc12107aab16514a117480bd590867ddcd30e19"
 
 [[projects]]
   branch = "master"
@@ -50,13 +50,13 @@
     "html",
     "html/atom"
   ]
-  revision = "640f4622ab692b87c2f3a94265e6f579fe38263d"
+  revision = "04a2e542c03f1d053ab3e4d6e5abcd4b66e2be8e"
 
 [[projects]]
   name = "gopkg.in/ini.v1"
   packages = ["."]
-  revision = "6529cf7c58879c08d927016dde4477f18a0634cb"
-  version = "v1.36.0"
+  revision = "9c8236e659b76e87bf02044d06fde8683008ff3e"
+  version = "v1.39.0"
 
 [[projects]]
   name = "gopkg.in/yaml.v2"
@@ -67,6 +67,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "502b6bcb64c8115e7df36973702ba98aebfdb2e99faace6a4f01bc905e142c5c"
+  inputs-digest = "a2d6e928bbc07dbad901c050d461a392ba4d209531cf71b65e35792c1167a856"
   solver-name = "gps-cdcl"
   solver-version = 1

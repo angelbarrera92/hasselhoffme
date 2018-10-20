@@ -92,7 +92,7 @@ func writeMotd(motd *ascii.Ascii) {
 		content = string(content_bytes)
 	}
 
-	re := regexp.MustCompile(`(?s)### hasselhon ###.*### hasselhoff ###`)
+	re := regexp.MustCompile(`(?s)### hasselhon ###.*### hasselhoff ###\n`)
 	content = re.ReplaceAllString(content, "")
 
 	f, err := os.OpenFile(MOTD_FILE, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755)
@@ -104,7 +104,7 @@ func writeMotd(motd *ascii.Ascii) {
 
 	fmt.Fprintf(f, "%s### hasselhon ###\n", content)
 	motd.WriteTo(f)
-	fmt.Fprintf(f, "### hasselhoff ###")
+	fmt.Fprintf(f, "### hasselhoff ###\n")
 }
 
 func writeUpdateMotdScript(motd *ascii.Ascii) {

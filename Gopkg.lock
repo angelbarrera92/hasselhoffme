@@ -3,34 +3,43 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:cc2fc8976c05cf05199c125c682af24c6f7a2f2315c798c0971f8c7c70b89da5"
   name = "github.com/jsummers/gobmp"
   packages = ["."]
+  pruneopts = "UT"
   revision = "e2ba15ffa76e4db3c90ae9e7c4b1c32a411207a4"
 
 [[projects]]
   branch = "master"
+  digest = "1:34534b73e925d20cc72cf202f8b482fdcbe3a1b113e19375f31aadabd0f0f97d"
   name = "github.com/nfnt/resize"
   packages = ["."]
+  pruneopts = "UT"
   revision = "83c6a9932646f83e3267f353373d47347b6036b2"
 
 [[projects]]
   branch = "master"
+  digest = "1:f1eb56e0aea374a843ab93cd4567d477c7c900347e7c6d41c19a7c39e52c15e9"
   name = "github.com/reujab/wallpaper"
   packages = ["."]
+  pruneopts = "UT"
   revision = "cfc12107aab16514a117480bd590867ddcd30e19"
 
 [[projects]]
   branch = "master"
+  digest = "1:e324f5cc9d1a211835ff819041432a38216a68c7a417d920cfa8f1e8086d713f"
   name = "github.com/zyxar/image2ascii"
   packages = [
     "ascii",
     "ico",
-    "term"
+    "term",
   ]
+  pruneopts = "UT"
   revision = "460a04e371aee07173ca2b912340fe742892c7fd"
 
 [[projects]]
   branch = "master"
+  digest = "1:c8894b012a5d7035cfe837c0d63eb116ac89585a7638ffa6e5e898cb9b2d8c41"
   name = "golang.org/x/image"
   packages = [
     "bmp",
@@ -39,34 +48,45 @@
     "tiff/lzw",
     "vp8",
     "vp8l",
-    "webp"
+    "webp",
   ]
+  pruneopts = "UT"
   revision = "991ec62608f3c0da01d400756917825d1e2fd528"
 
 [[projects]]
   branch = "master"
+  digest = "1:1a1ecfa7b54ca3f7a0115ab5c578d7d6a5d8b605839c549e80260468c42f8be7"
   name = "golang.org/x/net"
   packages = [
     "html",
-    "html/atom"
+    "html/atom",
   ]
+  pruneopts = "UT"
   revision = "04a2e542c03f1d053ab3e4d6e5abcd4b66e2be8e"
 
 [[projects]]
+  digest = "1:15e27372d379b45b18ac917b9dafc45c45485239490ece18cca97a12f9591146"
   name = "gopkg.in/ini.v1"
   packages = ["."]
+  pruneopts = "UT"
   revision = "9c8236e659b76e87bf02044d06fde8683008ff3e"
   version = "v1.39.0"
 
 [[projects]]
+  digest = "1:342378ac4dcb378a5448dd723f0784ae519383532f5e70ade24132c4c8693202"
   name = "gopkg.in/yaml.v2"
   packages = ["."]
+  pruneopts = "UT"
   revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
   version = "v2.2.1"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "a2d6e928bbc07dbad901c050d461a392ba4d209531cf71b65e35792c1167a856"
+  input-imports = [
+    "github.com/reujab/wallpaper",
+    "github.com/zyxar/image2ascii/ascii",
+    "golang.org/x/net/html",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -6,3 +6,4 @@
 - [ervitis | @ervitis](https://github.com/ervitis): The Wallpaper Guy
 - [Benjamin Gentil | @bengentil](https://github.com/bengentil): The Hoff Specialist
 - [Morgan Hamlin | @Mkelsey25](https://github.com/Mkelsey25): Hoffcreds Specialist
+- [Ahmy yulrizka | @yulrizka](https://github.com/yulrizka): The Hoff ARMor

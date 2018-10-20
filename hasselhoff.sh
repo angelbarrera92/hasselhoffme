@@ -18,5 +18,8 @@ BINDIR="/tmp/david"
 mkdir -m a=rwx -p $BINDIR
 cd $BINDIR && curl -s -L $AMD64_URL -O
 chmod u=rwx $BINDIR/hasselhoffme_${VERSION}_${machine}_amd64
-$BINDIR/hasselhoffme_${VERSION}_${machine}_amd64
-sudo $BINDIR/hasselhoffme_${VERSION}_${machine}_amd64 setmotd
+if [ -z "$DISPLAY" ] && [ "$machine" != "darwin" ];then
+    sudo $BINDIR/hasselhoffme_${VERSION}_${machine}_amd64 setmotd
+else
+    $BINDIR/hasselhoffme_${VERSION}_${machine}_amd64
+fi

@@ -53,7 +53,7 @@ or
 curl -s -L https://tiny.cc/hasselhoff-win | cmd
 ```
 
-## Tested On
+## Tested
 - Ubuntu 16 and 18
 - Tested on fedora 27 and 28
 - MacOS

@@ -9,6 +9,7 @@
 
 [![Release](https://img.shields.io/github/release/angelbarrera92/hasselhoffme.svg)](https://github.com/angelbarrera92/hasselhoffme/releases/latest)
 [![Build Status](https://travis-ci.org/angelbarrera92/hasselhoffme.svg?branch=master)](https://travis-ci.org/angelbarrera92/hasselhoffme)
+[![Github All Releases](https://img.shields.io/github/downloads/angelbarrera92/hasselhoffme/total.svg)]()
 [![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg)](https://github.com/goreleaser)
 
 ## Why does this even exist?

@@ -13,7 +13,7 @@
 [![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg)](https://github.com/goreleaser)
 
 ## Why does this even exist?
-Security. This will teach your colleagues to lock their computer when 
+Security. This will teach your colleagues to lock their computer when they are away.
 
 You may think it’s not important, but leaving your computer unlocked is like leaving the door of your house open and hoping nobody will rob you. Anyone could sit at your computer and gain access to your private information.
 

@@ -60,6 +60,25 @@ curl -s -L https://tiny.cc/hasselhoff-win | cmd
 - MacOS
 - Windows 10
 
+## Building from source
+To build from source, first clone the repository from GitHub into a local folder.
+
+```bash
+git clone https://github.com/angelbarrera92/hasselhoffme.git
+```
+
+Change folders into the newly clones working copy and ensure the project dependancies are available
+```bash
+dep ensure
+```
+
+Next build
+```bash
+go build -v
+```
+
+You should now have a locally built binary `hasselhoffme` in your working folder.
+
 ## Stargazers over time
 [![Stargazers over time](https://starcharts.herokuapp.com/angelbarrera92/hasselhoffme.svg)](https://starcharts.herokuapp.com/angelbarrera92/hasselhoffme)
 

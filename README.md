@@ -9,6 +9,7 @@
 
 [![Release](https://img.shields.io/github/release/angelbarrera92/hasselhoffme.svg)](https://github.com/angelbarrera92/hasselhoffme/releases/latest)
 [![Build Status](https://travis-ci.org/angelbarrera92/hasselhoffme.svg?branch=master)](https://travis-ci.org/angelbarrera92/hasselhoffme)
+[![Go Report Card](https://goreportcard.com/badge/github.com/angelbarrera92/hasselhoffme)](https://goreportcard.com/badge/github.com/angelbarrera92/hasselhoffme)
 [![Github All Releases](https://img.shields.io/github/downloads/angelbarrera92/hasselhoffme/total.svg)](https://www.somsubhra.com/github-release-stats/?username=angelbarrera92&repository=hasselhoffme)
 [![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg)](https://github.com/goreleaser)
 

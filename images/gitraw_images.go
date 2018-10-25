@@ -1,31 +1,31 @@
 package images
 
 import (
-	"fmt"
-	"net/http"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
+	"net/http"
 )
 
 const UserRepo = "angelbarrera92/hasselhoffme"
 
 type Links struct {
 	Self string `json:"message"`
-	Git string `json:"git"`
-	Html string `json:"html"`
+	Git  string `json:"git"`
+	HTML string `json:"html"` // nolint
 }
 
 type Content struct {
-	Name string `json:"name"`
-	Path string `json:"path"`
-	Sha string `json:"sha"`
-	Size int `json:"size"`
-	Url string `json:"url"`
-	HtmlUrl string `json:"html_url"`
-	GitUrl string `json:"git_url"`
-	DownloadUrl string `json:"download_url"`
-	TypeObject string `json:"type"`
-	Links Links `json:"links"`
+	Name        string `json:"name"`
+	Path        string `json:"path"`
+	Sha         string `json:"sha"`
+	Size        int    `json:"size"`
+	URL         string `json:"url"`
+	HtmlURL     string `json:"html_url"`     // nolint
+	GitURL      string `json:"git_url"`      // nolint
+	DownloadURL string `json:"download_url"` // nolint
+	TypeObject  string `json:"type"`
+	Links       Links  `json:"links"`
 }
 
 func SearchGithubRawImages(w string) (result string) {
@@ -40,8 +40,8 @@ func SearchGithubRawImages(w string) (result string) {
 
 	for k, v := range content {
 		images = append(images, ImageResult{
-			Source: v.DownloadUrl,
-			Index: k,
+			Source: v.DownloadURL,
+			Index:  k,
 		})
 	}
 
@@ -50,20 +50,23 @@ func SearchGithubRawImages(w string) (result string) {
 	return images[rn].Source
 }
 
-func getContent(baseUrl string) ([]Content, error) {
+func getContent(baseURL string) ([]Content, error) {
 
 	var content []Content
 
-	resp, _ := http.Get(baseUrl)
+	resp, err := http.Get(baseURL)
+	if err != nil {
+		return nil, err
+	}
 	if resp.StatusCode >= 400 {
 		return nil, fmt.Errorf("error response: %s", resp.Body)
 	}
 
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
+	body, ioerr := ioutil.ReadAll(resp.Body)
+	if ioerr != nil {
+		return nil, ioerr
 	}
 
 	err = json.Unmarshal(body, &content)

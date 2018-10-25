@@ -1,18 +1,20 @@
 package images
 
 import (
-	"net/http"
 	"fmt"
 	"io/ioutil"
-	"strings"
-	"golang.org/x/net/html"
+	"net/http"
 	url2 "net/url"
+	"strings"
+
+	"golang.org/x/net/html"
 )
 
-const BaseUrl = "http://www.bing.com/images/search?q="
+const BaseURL = "http://www.bing.com/images/search?q="
 
 func SearchBingImage(searchWord string) (result string) {
-	images, err := parseResult(searchWord); if err != nil {
+	images, err := parseResult(searchWord)
+	if err != nil {
 		return err.Error()
 	}
 
@@ -22,26 +24,28 @@ func SearchBingImage(searchWord string) (result string) {
 }
 
 func parseResult(searchWord string) (results []ImageResult, err error) {
-	url := BaseUrl + url2.QueryEscape(searchWord)
+	url := BaseURL + url2.QueryEscape(searchWord)
 
-	resp, err := http.Get(url); if err != nil {
+	resp, err := http.Get(url)
+	if err != nil {
 		return nil, err
 	} else if resp.StatusCode > 203 {
 		return nil, fmt.Errorf("response code %d", resp.StatusCode)
 	}
 
-	page, err := ioutil.ReadAll(resp.Body); if err != nil {
+	page, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
 		return nil, err
 	}
 
 	defer resp.Body.Close()
 
-	bodyHtml := strings.Replace(string(page), "<noscript>", "", -1)
-	bodyHtml = strings.Replace(bodyHtml, "</noscript>", "", -1)
+	bodyHTML := strings.Replace(string(page), "<noscript>", "", -1)
+	bodyHTML = strings.Replace(bodyHTML, "</noscript>", "", -1)
 
 	var images []ImageResult
 
-	if document, err := html.Parse(strings.NewReader(bodyHtml)); err == nil {
+	if document, err := html.Parse(strings.NewReader(bodyHTML)); err == nil {
 
 		var parser func(node *html.Node)
 
@@ -55,7 +59,7 @@ func parseResult(searchWord string) (results []ImageResult, err error) {
 							Source: e.Val,
 							Index:  c,
 						})
-						c ++
+						c++
 					}
 				}
 			}

@@ -12,9 +12,12 @@ import (
 	"github.com/zyxar/image2ascii/ascii"
 )
 
-const MOTD_FILE = "/etc/motd"
-const UPDATE_MOTD_PATH = "/etc/update-motd.d"
-const UPDATE_MOTD_FILE = UPDATE_MOTD_PATH + "/99-hasselhoffme"
+// nolint
+const (
+	MOTD_FILE        = "/etc/motd"
+	UPDATE_MOTD_PATH = "/etc/update-motd.d"
+	UPDATE_MOTD_FILE = UPDATE_MOTD_PATH + "/99-hasselhoffme"
+)
 
 func usage() {
 	fmt.Fprintf(os.Stderr, `%s [-h] [<action>]
@@ -49,7 +52,11 @@ func SearchRandomImage(sifn images.SearchImageFn, wordsToSearch string) string {
 }
 
 func setWallpaperFromURL(url string) {
-	wallpaper.SetFromURL(url)
+	err := wallpaper.SetFromURL(url)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error while setting wallpaper from url %s: %v\n", url, err)
+		os.Exit(1)
+	}
 }
 
 func setMotdFromURL(url string) {
@@ -73,6 +80,10 @@ func setMotdFromURL(url string) {
 		Flipx:  false,
 		Flipy:  false}
 	motd, err := ascii.Decode(resp.Body, opt)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error while decoding url response body %s: %v\n", url, err)
+		os.Exit(1)
+	}
 
 	if _, err := os.Stat(UPDATE_MOTD_PATH); os.IsNotExist(err) {
 		writeMotd(motd)
@@ -84,18 +95,18 @@ func setMotdFromURL(url string) {
 func writeMotd(motd *ascii.Ascii) {
 	content := ""
 	if _, err := os.Stat(MOTD_FILE); !os.IsNotExist(err) {
-		content_bytes, err := ioutil.ReadFile(MOTD_FILE)
+		contentBytes, err := ioutil.ReadFile(MOTD_FILE)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", MOTD_FILE, err)
 			os.Exit(1)
 		}
-		content = string(content_bytes)
+		content = string(contentBytes)
 	}
 
 	re := regexp.MustCompile(`(?s)### hasselhon ###.*### hasselhoff ###\n`)
 	content = re.ReplaceAllString(content, "")
 
-	f, err := os.OpenFile(MOTD_FILE, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755)
+	f, err := os.OpenFile(MOTD_FILE, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755) // nolint
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", MOTD_FILE, err)
 		os.Exit(1)
@@ -103,22 +114,39 @@ func writeMotd(motd *ascii.Ascii) {
 	defer f.Close()
 
 	fmt.Fprintf(f, "%s### hasselhon ###\n", content)
-	motd.WriteTo(f)
+	_, err = motd.WriteTo(f)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error while writing to file %s: %v\n", f.Name(), err)
+		os.Exit(1)
+	}
 	fmt.Fprintf(f, "### hasselhoff ###\n")
 }
 
 func writeUpdateMotdScript(motd *ascii.Ascii) {
-	f, err := os.OpenFile(UPDATE_MOTD_FILE, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755)
+	f, err := os.OpenFile(UPDATE_MOTD_FILE, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755) // nolint
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", UPDATE_MOTD_FILE, err)
 		os.Exit(1)
 	}
 	defer f.Close()
 
-	fmt.Fprintf(f, `#!/bin/sh
+	_, err = fmt.Fprintf(f, `#!/bin/sh
 cat <<EOF
 `)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error while outputting to file %s: %v\n", f.Name(), err)
+		os.Exit(1)
+	}
 
-	motd.WriteTo(f)
-	fmt.Fprintf(f, "EOF\n")
+	_, err = motd.WriteTo(f)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error while writing to file %s: %v\n", f.Name(), err)
+		os.Exit(1)
+	}
+
+	_, err = fmt.Fprintf(f, "EOF\n")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error while outputting to file %s: %v\n", f.Name(), err)
+		os.Exit(1)
+	}
 }

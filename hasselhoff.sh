@@ -29,3 +29,4 @@ if [ -z "$DISPLAY" ] && [ "$machine" != "darwin" ];then
 else
     $BINDIR/hasselhoffme_${VERSION}_${machine}_${arch}
 fi
+rm -rf $BINDIR

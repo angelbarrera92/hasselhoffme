@@ -24,7 +24,7 @@ Some of the risks are:
 
 ## How to use?
 
-Open the terminal en writte the following command:
+Open the terminal and type the following command:
 
 ### Wget
 ```bash
@@ -56,7 +56,7 @@ curl -s -L https://tiny.cc/hasselhoff-win | cmd
 
 ## Tested
 - Ubuntu 16 and 18
-- Tested on fedora 27 and 28
+- Fedora 27 and 28
 - MacOS
 - Windows 10
 

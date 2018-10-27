@@ -33,6 +33,11 @@ cover: ## Runs tests on ./cmd/ with HTML code coverage
 	go test -race -cover -coverprofile=cover.out -coverpkg=github.com/angelbarrera92/hasselhoffme/... ./...
 	go tool cover -html=cover.out
 
+build: ## Builds the binary
+	export GO111MODULE=on
+	go mod download
+	go build -v
+
 install-linters: ## Install linters
 	go get -u github.com/FiloSottile/vendorcheck
 	# Pin to v1.10.2

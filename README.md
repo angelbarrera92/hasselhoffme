@@ -70,7 +70,8 @@ git clone https://github.com/angelbarrera92/hasselhoffme.git
 
 Change folders into the newly clones working copy and ensure the project dependancies are available
 ```bash
-dep ensure
+export GO111MODULE=on
+go mod download
 ```
 
 Next build

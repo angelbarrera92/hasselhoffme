@@ -1,6 +1,6 @@
 @echo off
 echo "Calling the Hasselhoff..."
-SET VERSION=0.2.2
+SET VERSION=0.3.0
 SET curr=%cd%
 
 curl -s -L https://github.com/angelbarrera92/hasselhoffme/releases/download/%VERSION%/hasselhoffme_%VERSION%_windows_amd64.exe --output hass.exe > NUL

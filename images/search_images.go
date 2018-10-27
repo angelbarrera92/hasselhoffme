@@ -2,7 +2,7 @@ package images
 
 type ImageResult struct {
 	Source string
-	Index int
+	Index  int
 }
 
-type SearchImageFn func(w string) (string)
+type SearchImageFn func(w string) string

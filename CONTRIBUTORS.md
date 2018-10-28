@@ -9,3 +9,4 @@
 - [Ahmy yulrizka | @yulrizka](https://github.com/yulrizka): The Hoff ARMor
 - [Pau Rosello | @paurosello](https://github.com/paurosello): README or not
 - [KahShing| @shingz96](https://github.com/shingz96): Newbie in coding
+- [BigOokie | @BigOokie](https://github.com/BigOokie): Maker and Linter of the Hoff

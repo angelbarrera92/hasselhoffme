@@ -12,11 +12,13 @@ import (
 	"github.com/zyxar/image2ascii/ascii"
 )
 
-// nolint
 const (
-	MOTD_FILE        = "/etc/motd"
-	UPDATE_MOTD_PATH = "/etc/update-motd.d"
-	UPDATE_MOTD_FILE = UPDATE_MOTD_PATH + "/99-hasselhoffme"
+	// MOTDFile is a path to /etc/motd file
+	MOTDFile = "/etc/motd"
+	// UpdateMOTDPath is a path to /etc/update-motd.d
+	UpdateMOTDPath = "/etc/update-motd.d"
+	// UpdateMOTDFile is a path to /etc/update-motd.d/99-hasselhofme
+	UpdateMOTDFile = UpdateMOTDPath + "/99-hasselhoffme"
 )
 
 func usage() {
@@ -85,7 +87,7 @@ func setMotdFromURL(url string) {
 		os.Exit(1)
 	}
 
-	if _, err := os.Stat(UPDATE_MOTD_PATH); os.IsNotExist(err) {
+	if _, err := os.Stat(UpdateMOTDPath); os.IsNotExist(err) {
 		writeMotd(motd)
 	} else {
 		writeUpdateMotdScript(motd)
@@ -94,10 +96,10 @@ func setMotdFromURL(url string) {
 
 func writeMotd(motd *ascii.Ascii) {
 	content := ""
-	if _, err := os.Stat(MOTD_FILE); !os.IsNotExist(err) {
-		contentBytes, err := ioutil.ReadFile(MOTD_FILE)
+	if _, err := os.Stat(MOTDFile); !os.IsNotExist(err) {
+		contentBytes, err := ioutil.ReadFile(MOTDFile)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", MOTD_FILE, err)
+			fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", MOTDFile, err)
 			os.Exit(1)
 		}
 		content = string(contentBytes)
@@ -106,9 +108,9 @@ func writeMotd(motd *ascii.Ascii) {
 	re := regexp.MustCompile(`(?s)### hasselhon ###.*### hasselhoff ###\n`)
 	content = re.ReplaceAllString(content, "")
 
-	f, err := os.OpenFile(MOTD_FILE, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755) // nolint
+	f, err := os.OpenFile(MOTDFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755) // nolint
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", MOTD_FILE, err)
+		fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", MOTDFile, err)
 		os.Exit(1)
 	}
 	defer f.Close()
@@ -123,9 +125,9 @@ func writeMotd(motd *ascii.Ascii) {
 }
 
 func writeUpdateMotdScript(motd *ascii.Ascii) {
-	f, err := os.OpenFile(UPDATE_MOTD_FILE, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755) // nolint
+	f, err := os.OpenFile(UpdateMOTDFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755) // nolint
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", UPDATE_MOTD_FILE, err)
+		fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", UpdateMOTDFile, err)
 		os.Exit(1)
 	}
 	defer f.Close()

@@ -12,7 +12,7 @@ const UserRepo = "angelbarrera92/hasselhoffme"
 type Links struct {
 	Self string `json:"message"`
 	Git  string `json:"git"`
-	HTML string `json:"html"` // nolint
+	HTML string `json:"html"`
 }
 
 type Content struct {
@@ -22,9 +22,9 @@ type Content struct {
 	Size        int    `json:"size"`
 	URL         string `json:"url"`
 	HTMLURL     string `json:"html_url"`
-	GitURL      string `json:"git_url"`      // nolint
-	DownloadURL string `json:"download_url"` // nolint
-	TypeObject  string `json:"type"`
+	GitURL      string `json:"git_url"`
+	DownloadURL string `json:"download_url"`
+	TypeObject  string `jbson:"type"`
 	Links       Links  `json:"links"`
 }
 

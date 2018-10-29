@@ -1,7 +1,6 @@
-module github.com/hasselhoffme
+module github.com/angelbarrera92/hasselhoffme
 
 require (
-	github.com/angelbarrera92/hasselhoffme v0.0.0-20181024133953-8cab1792796c
 	github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 // indirect
 	github.com/jtolds/gls v4.2.1+incompatible // indirect
 	github.com/reujab/wallpaper v0.0.0-20180721040617-cfc12107aab1

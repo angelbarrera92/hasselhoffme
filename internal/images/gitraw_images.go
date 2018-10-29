@@ -29,7 +29,7 @@ type Content struct {
 }
 
 func SearchGithubRawImages(w string) (result string) {
-	url := fmt.Sprintf("https://api.github.com/repos/%s/contents/wallpapers", UserRepo)
+	url := fmt.Sprintf("https://api.github.com/repos/%s/contents/internal/wallpapers", UserRepo)
 
 	content, err := getContent(url)
 	if err != nil {

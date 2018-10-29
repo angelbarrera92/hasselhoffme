@@ -49,6 +49,7 @@ func main() {
 	}
 }
 
+// SearchRandomImage searches for a random image using provided image search function
 func SearchRandomImage(sifn images.SearchImageFn, wordsToSearch string) string {
 	return sifn(wordsToSearch)
 }

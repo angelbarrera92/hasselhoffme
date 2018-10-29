@@ -18,7 +18,7 @@ case "${arch}" in
     armv7l)    arch=armv7;;
     *)         arch="amd64"
 esac
-VERSION="0.3.0"
+VERSION="0.3.2"
 BIN_URL="https://github.com/angelbarrera92/hasselhoffme/releases/download/${VERSION}/hasselhoffme_${VERSION}_${machine}_${arch}"
 BINDIR="/tmp/david"
 mkdir -m a=rwx -p $BINDIR

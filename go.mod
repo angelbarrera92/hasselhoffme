@@ -1,4 +1,4 @@
-module github.com/hasselhoffme
+module github.com/angelbarrera02/hasselhoffme
 
 require (
 	github.com/angelbarrera92/hasselhoffme v0.0.0-20181024133953-8cab1792796c

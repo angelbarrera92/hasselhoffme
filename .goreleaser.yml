@@ -1,8 +1,12 @@
 # Build customization
+before:
+  hooks:
+    - go mod download
 builds:
-  - main: .
+  - main: ./cmd/hasselhoffme/
     env:
       - CGO_ENABLED=0
+      - GO111MODULE=on
     binary: hasselhoffme
     goos:
       - windows

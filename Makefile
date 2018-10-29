@@ -1,12 +1,12 @@
-.PHONY: test lint check cover
-.PHONY: install-linters
+.PHONY: test lint check cover build
 #.PHONY: release
 
 test: ## Run tests
 	go test -race ./... -timeout=5m
 
 lint: ## Run linters. Use make install-linters first.
-	golint ./...
+	go get -u golang.org/x/lint/golint
+	golint --set_exit_status ./...
 	go vet -all ./...
 
 check: lint test  ## Run tests and linters

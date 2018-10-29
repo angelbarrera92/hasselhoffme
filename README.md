@@ -76,7 +76,7 @@ go mod download
 
 Next build
 ```bash
-go build -v
+go build -v ./cmd/hasselhoffme
 ```
 
 You should now have a locally built binary `hasselhoffme` in your working folder.

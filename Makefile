@@ -18,7 +18,7 @@ cover: ## Runs tests on ./cmd/ with HTML code coverage
 build: ## Builds the binary
 	export GO111MODULE=on && \
 		go mod download && \
-		go build -v
+		go build -v ./cmd/hasshelhoffme
 
 ## TODO: Add support for goreleaser
 #release: check	## Use GoReleaser to build, package and release

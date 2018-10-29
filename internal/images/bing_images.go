@@ -10,8 +10,10 @@ import (
 	"golang.org/x/net/html"
 )
 
+// BaseURL is the Bing Image Search endpoint
 const BaseURL = "http://www.bing.com/images/search?q="
 
+// SearchBingImage returns a random Bing Image Search result
 func SearchBingImage(searchWord string) (result string) {
 	images, err := parseResult(searchWord)
 	if err != nil {

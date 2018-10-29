@@ -7,7 +7,7 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/angelbarrera92/hasselhoffme/images"
+	"github.com/angelbarrera92/hasselhoffme/internal/images"
 	"github.com/reujab/wallpaper"
 	"github.com/zyxar/image2ascii/ascii"
 )

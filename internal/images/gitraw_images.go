@@ -21,7 +21,7 @@ type Content struct {
 	Sha         string `json:"sha"`
 	Size        int    `json:"size"`
 	URL         string `json:"url"`
-	HtmlURL     string `json:"html_url"`     // nolint
+	HTMLURL     string `json:"html_url"`
 	GitURL      string `json:"git_url"`      // nolint
 	DownloadURL string `json:"download_url"` // nolint
 	TypeObject  string `json:"type"`

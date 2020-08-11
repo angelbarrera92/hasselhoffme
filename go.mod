@@ -1,9 +1,11 @@
 module github.com/angelbarrera92/hasselhoffme
 
+go 1.14
+
 require (
 	github.com/gopherjs/gopherjs v0.0.0-20181017120253-0766667cb4d1 // indirect
 	github.com/jtolds/gls v4.2.1+incompatible // indirect
-	github.com/reujab/wallpaper v0.0.0-20180721040617-cfc12107aab1
+	github.com/reujab/wallpaper v0.0.0-20200229074030-4e1aa3ff8284
 	github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d // indirect
 	github.com/smartystreets/goconvey v0.0.0-20180222194500-ef6db91d284a // indirect
 	github.com/zyxar/image2ascii v0.0.0-20180912034614-460a04e371ae

@@ -1,56 +1,77 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"os"
-	"regexp"
 
 	"github.com/angelbarrera92/hasselhoffme/internal/images"
+	"github.com/angelbarrera92/hasselhoffme/internal/motd"
 	"github.com/reujab/wallpaper"
-	"github.com/zyxar/image2ascii/ascii"
 )
-
-const (
-	// MOTDFile is a path to /etc/motd file
-	MOTDFile = "/etc/motd"
-	// UpdateMOTDPath is a path to /etc/update-motd.d
-	UpdateMOTDPath = "/etc/update-motd.d"
-	// UpdateMOTDFile is a path to /etc/update-motd.d/99-hasselhofme
-	UpdateMOTDFile = UpdateMOTDPath + "/99-hasselhoffme"
-)
-
-func usage() {
-	fmt.Fprintf(os.Stderr, `%s [-h] [<action>]
-  available actions:
-	setwallpaper: sets a random wallpaper
-			(default if no action specified)
-	setmotd: sets a random ascii art motd
-`, os.Args[0])
-	os.Exit(1)
-}
 
 func main() {
-	action := "setwallpaper"
-	url := SearchRandomImage(images.SearchGithubRawImages, "")
+	// Create CLI flags
+	action := flag.String("action", "setwallpaper", "action to perform. Available actions: setwallpaper or setmotd")
+	provider := flag.String("provider", "embeded", "image provider. Available providers: embeded, repository, bing")
+	words := flag.String("words", "hasselhoff", "words to search for. Only working with bing provider")
+	// Parse
+	flag.Parse()
 
-	if len(os.Args) >= 2 {
-		action = os.Args[1]
+	// Default values
+	fn := images.SearchEmbededImages
+	remote := true
+
+	// Validate
+	switch *provider {
+	case "embeded":
+		fn = images.SearchEmbededImages
+		remote = false
+	case "repository":
+		fn = images.SearchGithubRawImages
+	case "bing":
+		fn = images.SearchBingImage
+		if *words == "" {
+			fmt.Fprintf(os.Stderr, "provider bing requires words to search\n")
+			os.Exit(1)
+		}
+	default:
+		fmt.Fprintf(os.Stderr, "unknown provider %s\n", *provider)
+		os.Exit(1)
 	}
 
-	switch action {
+	// Look for an image in the specified provider
+	pathOrURL := searchRandomImage(fn, *words)
+	if !remote {
+		defer os.Remove(pathOrURL)
+	}
+
+	// Then, perform the specified action
+	switch *action {
 	case "setwallpaper":
-		setWallpaperFromURL(url)
+		if remote {
+			setWallpaperFromURL(pathOrURL)
+		} else {
+			setWallpaperFromPath(pathOrURL)
+		}
 	case "setmotd":
-		setMotdFromURL(url)
+		if remote {
+			setMotdFromURL(pathOrURL)
+		} else {
+			setMotdFromPath(pathOrURL)
+		}
 	default:
-		usage()
+		fmt.Fprintf(os.Stderr, "unknown action %s\n", *action)
+		flag.PrintDefaults()
+		os.Exit(1)
 	}
 }
 
-// SearchRandomImage searches for a random image using provided image search function
-func SearchRandomImage(sifn images.SearchImageFn, wordsToSearch string) string {
+// searchRandomImage searches for a random image using provided image search function (provider)
+func searchRandomImage(sifn images.SearchImageFn, wordsToSearch string) string {
 	return sifn(wordsToSearch)
 }
 
@@ -62,94 +83,46 @@ func setWallpaperFromURL(url string) {
 	}
 }
 
-func setMotdFromURL(url string) {
-	if os.Getuid() != 0 {
-		fmt.Fprintf(os.Stderr, "motd can only be changed as root\n")
+func setWallpaperFromPath(path string) {
+	err := wallpaper.SetFromFile(path)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error while setting wallpaper from path %s: %v\n", path, err)
 		os.Exit(1)
 	}
+}
 
-	resp, err := http.Get(url)
+func setMotdFromURL(url string) {
+	data, err := download(url)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error while downloading %s: %v\n", url, err)
 		os.Exit(1)
 	}
+	motd.SetMotd(data)
+}
+
+func setMotdFromPath(path string) {
+	data, err := readFile(path)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error reading file %s: %v\n", path, err)
+		os.Exit(1)
+	}
+	motd.SetMotd(data)
+}
+
+func download(url string) ([]byte, error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error while downloading %s: %v\n", url, err)
+		return nil, err
+	}
 	defer resp.Body.Close()
-
-	opt := ascii.Options{
-		Width:  0,
-		Height: 0,
-		Color:  false,
-		Invert: false,
-		Flipx:  false,
-		Flipy:  false}
-	motd, err := ascii.Decode(resp.Body, opt)
+	bodyBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error while decoding url response body %s: %v\n", url, err)
-		os.Exit(1)
+		return nil, err
 	}
-
-	if _, err := os.Stat(UpdateMOTDPath); os.IsNotExist(err) {
-		writeMotd(motd)
-	} else {
-		writeUpdateMotdScript(motd)
-	}
+	return bodyBytes, nil
 }
 
-func writeMotd(motd *ascii.Ascii) {
-	content := ""
-	if _, err := os.Stat(MOTDFile); !os.IsNotExist(err) {
-		contentBytes, err := ioutil.ReadFile(MOTDFile)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", MOTDFile, err)
-			os.Exit(1)
-		}
-		content = string(contentBytes)
-	}
-
-	re := regexp.MustCompile(`(?s)### hasselhon ###.*### hasselhoff ###\n`)
-	content = re.ReplaceAllString(content, "")
-
-	f, err := os.OpenFile(MOTDFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755) // nolint
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", MOTDFile, err)
-		os.Exit(1)
-	}
-	defer f.Close()
-
-	fmt.Fprintf(f, "%s### hasselhon ###\n", content)
-	_, err = motd.WriteTo(f)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error while writing to file %s: %v\n", f.Name(), err)
-		os.Exit(1)
-	}
-	fmt.Fprintf(f, "### hasselhoff ###\n")
-}
-
-func writeUpdateMotdScript(motd *ascii.Ascii) {
-	f, err := os.OpenFile(UpdateMOTDFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0755) // nolint
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error while opening %s: %v\n", UpdateMOTDFile, err)
-		os.Exit(1)
-	}
-	defer f.Close()
-
-	_, err = fmt.Fprintf(f, `#!/bin/sh
-cat <<EOF
-`)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error while outputting to file %s: %v\n", f.Name(), err)
-		os.Exit(1)
-	}
-
-	_, err = motd.WriteTo(f)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error while writing to file %s: %v\n", f.Name(), err)
-		os.Exit(1)
-	}
-
-	_, err = fmt.Fprintf(f, "EOF\n")
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error while outputting to file %s: %v\n", f.Name(), err)
-		os.Exit(1)
-	}
+func readFile(path string) ([]byte, error) {
+	return ioutil.ReadFile(path)
 }

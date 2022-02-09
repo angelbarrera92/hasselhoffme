@@ -1,26 +1,30 @@
 package images
 
 import (
+	"io/ioutil"
 	"math/rand"
+	"os"
 	"time"
 )
-
-func initRand() {
-	rand.Seed(time.Now().Unix())
-}
 
 // RandomNumber returns a randomly selected integer constrained by the length of the
 // []ImageResult array passed to it
 func RandomNumber(images []ImageResult) int {
-	initRand()
+	rand.Seed(time.Now().Unix())
 
 	return rand.Intn(len(images))
 }
 
-// RandomNumberInt returns a randomly generated integeger constrained by the
-// min and max int values passed to it.
-func RandomNumberInt(min int, max int) int {
-	initRand()
-
-	return rand.Intn(max-min) + min
+func createTempFile(content []byte) (*os.File, error) {
+	tmpFile, err := ioutil.TempFile(os.TempDir(), "hasselhoffme-")
+	if err != nil {
+		return nil, err
+	}
+	if _, err = tmpFile.Write(content); err != nil {
+		return nil, err
+	}
+	if err := tmpFile.Close(); err != nil {
+		return nil, err
+	}
+	return tmpFile, nil
 }

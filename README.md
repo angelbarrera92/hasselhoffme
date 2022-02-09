@@ -70,13 +70,13 @@ git clone https://github.com/angelbarrera92/hasselhoffme.git
 
 Change folders into the newly clones working copy and ensure the project dependancies are available
 ```bash
-export GO111MODULE=on
-go mod download
+$ go mod download
+$ go mod tidy
 ```
 
-Next build
+Then build the project:
 ```bash
-go build -v ./cmd/hasselhoffme
+$ CGO_ENABLED=0 go build -v ./cmd/hasselhoffme
 ```
 
 You should now have a locally built binary `hasselhoffme` in your working folder.
